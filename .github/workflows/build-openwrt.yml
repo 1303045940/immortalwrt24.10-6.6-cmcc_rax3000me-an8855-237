@@ -80,8 +80,10 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x $DIY_P2_SH
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P2_SH}
         cp -f "${WORK_DIR}/mt7981b-cmcc-rax3000m.dts" "target/linux/mediatek/dts/mt7981b-cmcc-rax3000m.dts"
+        cat "target/linux/mediatek/dts/mt7981b-cmcc-rax3000m.dts"
+        $GITHUB_WORKSPACE/$DIY_P2_SH}
+        
 
     - name: Download package
       id: package
