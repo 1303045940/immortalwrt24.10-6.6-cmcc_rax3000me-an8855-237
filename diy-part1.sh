@@ -180,7 +180,7 @@ fi
 }
 
 # 克隆所需第三方包
-clone_package "https://github.com/gdy666/luci-app-lucky.git" "package/luci-app-lucky"
+
 #clone_package "https://github.com/tty228/luci-app-wechatpush.git" "package/luci-app-wechatpush"
 clone_package "https://github.com/rogueme/luci-app-adguardhome.git" "package/luci-app-adguardhome"
 #clone_package "https://github.com/sirpdboy/luci-app-taskplan.git" "package/luci-app-taskplan"
@@ -188,15 +188,13 @@ clone_package "https://github.com/rogueme/luci-app-adguardhome.git" "package/luc
 #clone_package "https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk.git" "package/mentohust"
 # istore商店
 UPDATE_PACKAGE "luci-app-store" "shidahuilang/openwrt-package" "Immortalwrt" "pkg"
-UPDATE_PACKAGE "lucky" "shidahuilang/openwrt-package" "Lede" "pkg"
-UPDATE_PACKAGE "luci-app-lucky" "shidahuilang/openwrt-package" "Lede" "pkg"
+
 # npc安装
 UPDATE_PACKAGE "luci-app-npc" "kiddin9/kwrt-packages" "main" "pkg"
 UPDATE_PACKAGE "luci-app-frpc" "kiddin9/kwrt-packages" "main" "pkg"
 UPDATE_PACKAGE "luci-app-zerotier" "kiddin9/kwrt-packages" "main" "pkg"
 #UPDATE_PACKAGE "luci-app-ssr-plus" "kiddin9/kwrt-packages" "main" "pkg"
-UPDATE_PACKAGE "luci-theme-argon" "kiddin9/kwrt-packages" "main" "pkg"
-#UPDATE_PACKAGE "luci-app-easymesh" "kiddin9/kwrt-packages" "main" "pkg"
+
 UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"
 UPDATE_PACKAGE "passwall" "xiaorouji/openwrt-passwall" "main" "pkg"
 UPDATE_PACKAGE "passwall2" "xiaorouji/openwrt-passwall2" "main" "pkg"
@@ -204,7 +202,7 @@ UPDATE_PACKAGE "passwall2" "xiaorouji/openwrt-passwall2" "main" "pkg"
 #UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
 
 #UPDATE_PACKAGE "istore" "linkease/istore" "main" "pgk"
-UPDATE_PACKAGE "quickstart" "kenzok8/small-package" "main" "pkg"
+#UPDATE_PACKAGE "quickstart" "kenzok8/small-package" "main" "pkg"
 #UPDATE_PACKAGE "istorex" "kenzok8/small-package" "main" "pkg"
 UPDATE_PACKAGE "ssr-plus" "fw876/helloworld" "master"
 
@@ -229,14 +227,6 @@ else
     echo "ℹ️ 未找到 libxcrypt 的 Makefile，跳过修改"
 fi
 
-# 解决 quickstart 插件编译提示不支持压缩
-if [ -f "package/feeds/nas_luci/luci-app-quickstart/Makefile" ]; then
-    # 修正路径，从nas_luci源中查找该插件
-    sed -i 's/DEPENDS:=+luci-base/DEPENDS:=+luci-base\n    NO_MINIFY=1/' "package/feeds/nas_luci/luci-app-quickstart/Makefile"
-    echo "✅ 成功修改 quickstart 插件配置"
-else
-    echo "ℹ️ 未找到 quickstart 插件的 Makefile，跳过修改"
-fi
 
 
 #预置OpenClash内核和数据
