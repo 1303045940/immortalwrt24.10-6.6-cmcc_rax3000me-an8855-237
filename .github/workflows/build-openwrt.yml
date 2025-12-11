@@ -81,6 +81,7 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH}
+                cp -f "${WORK_DIR}/mt7981b-ph-hy3000-emmc.dts" "${SOURCE_DIR}/target/linux/mediatek/dts/mt7981b-ph-hy3000-emmc.dts"
 
     - name: Download package
       id: package
