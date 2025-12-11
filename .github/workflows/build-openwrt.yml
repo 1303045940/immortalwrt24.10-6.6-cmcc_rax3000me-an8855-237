@@ -82,7 +82,7 @@ jobs:
         cd openwrt
         cp -f "$GITHUB_WORKSPACE/mt7981b-cmcc-rax3000m.dts" "target/linux/mediatek/dts/mt7981b-cmcc-rax3000m.dts"
 
-        cat "target/linux/mediatek/dts/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m.dts"
+        cat "target/linux/mediatek/dts/target/linux/mediatek/dts/mt7981b-cmcc-rax3000me.dts"
         $GITHUB_WORKSPACE/$DIY_P2_SH
         
 
