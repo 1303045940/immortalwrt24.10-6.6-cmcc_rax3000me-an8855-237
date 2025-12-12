@@ -106,13 +106,6 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x $DIY_P2_SH
         cd openwrt
-        
-        # 复制 RAX3000M 基础设备树 (带 AN8855)
-        cp -f "$GITHUB_WORKSPACE/mt7981b-cmcc-rax3000m.dts" "target/linux/mediatek/dts/mt7981b-cmcc-rax3000m.dts"
-        
-        # 复制 RAX3000Me 设备树 (如果存在)
-        [ -f "$GITHUB_WORKSPACE/mt7981b-cmcc-rax3000me.dts" ] && \
-        cp -f "$GITHUB_WORKSPACE/mt7981b-cmcc-rax3000me.dts" "target/linux/mediatek/dts/mt7981b-cmcc-rax3000me.dts"
 
         # 显示设备树内容
         cat "target/linux/mediatek/dts/mt7981b-cmcc-rax3000m.dts"
