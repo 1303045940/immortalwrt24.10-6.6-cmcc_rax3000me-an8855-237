@@ -20,7 +20,7 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/airjinkela/immortalwrt-mt798x-6.6-upstream/tree/rax3000me_an8855
+  REPO_URL: https://github.com/airjinkela/immortalwrt-mt798x-6.6-upstream
   REPO_BRANCH: rax3000me_an8855
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: 1.config
