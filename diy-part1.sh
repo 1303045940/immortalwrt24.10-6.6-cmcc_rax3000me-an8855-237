@@ -147,9 +147,9 @@ add_feed() {
 }
 
 # 添加istore和nas_luci源
-add_feed "istore" "https://github.com/linkease/istore.git;main"
-add_feed "nas_luci" "https://github.com/linkease/nas-packages-luci.git;main"
-add_feed "nas_packages" "https://github.com/linkease/nas-packages.git;master"
+# add_feed "istore" "https://github.com/linkease/istore.git;main"
+# add_feed "nas_luci" "https://github.com/linkease/nas-packages-luci.git;main"
+# add_feed "nas_packages" "https://github.com/linkease/nas-packages.git;master"
 
 # 克隆第三方包函数
 # 参数1: 仓库URL
