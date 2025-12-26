@@ -19,8 +19,8 @@
 git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
 #git clone https://github.com/sbwml/luci-app-openlist2 package/openlist
 
-sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
-sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
+#sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+#sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 
 
 #添加第三方软件源
