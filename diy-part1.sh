@@ -224,6 +224,8 @@ UPDATE_PACKAGE "ssr-plus" "fw876/helloworld" "master"
 #UPDATE_VERSION "软件包名" "测试版，true，可选，默认为否"
 #UPDATE_VERSION "sing-box"
 UPDATE_VERSION "openclash"
+UPDATE_VERSION "npc"
+UPDATE_VERSION "luci-app-npc"
 
 # 解决 libxcrypt 因 -Werror=format-nonliteral 导致的编译错误
 LIBXCRYPT_MAKEFILE="feeds/packages/libs/libxcrypt/Makefile"
