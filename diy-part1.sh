@@ -244,6 +244,7 @@ else
 fi
 
 
+cd package
 
 #预置OpenClash内核和数据
 if [ -d *"openclash"* ]; then
