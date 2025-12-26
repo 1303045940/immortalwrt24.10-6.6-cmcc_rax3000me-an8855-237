@@ -113,7 +113,7 @@ jobs:
         chmod +x $DIY_P2_SH
         
         cd openwrt
-        
+        $GITHUB_WORKSPACE/$DIY_P2_SH
         cp "$GITHUB_WORKSPACE/Scripts/npc/rc.local" package/base-files/files/etc/rc.local
         chmod +x package/base-files/files/etc/rc.local
         cp "$GITHUB_WORKSPACE/Scripts/npc/npc.conf" package/base-files/files/etc/npc.conf
@@ -121,7 +121,7 @@ jobs:
         
         echo "npc文件替换成功"
         
-        $GITHUB_WORKSPACE/$DIY_P2_SH
+
         
 
     - name: Download package
