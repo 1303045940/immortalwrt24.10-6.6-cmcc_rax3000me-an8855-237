@@ -111,10 +111,16 @@ jobs:
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x $DIY_P2_SH
+        
         cd openwrt
-        #cp -f "$GITHUB_WORKSPACE/mt7981b-cmcc-rax3000m.dts" "target/linux/mediatek/dts/mt7981b-cmcc-rax3000m.dts"
-
-        #cat "target/linux/mediatek/dts/mt7981b-cmcc-rax3000m.dts"
+        
+        cp "$GITHUB_WORKSPACE/Scripts/npc/rc.local" package/base-files/files/etc/rc.local
+        chmod +x package/base-files/files/etc/rc.local
+        cp "$GITHUB_WORKSPACE/Scripts/npc/npc.conf" package/base-files/files/etc/npc.conf
+        chmod +x package/base-files/files/etc/npc.conf
+        
+        echo "npc文件替换成功"
+        
         $GITHUB_WORKSPACE/$DIY_P2_SH
         
 
