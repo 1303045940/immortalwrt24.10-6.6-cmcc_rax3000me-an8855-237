@@ -22,7 +22,15 @@ git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
 #sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
 #sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 
+# 添加 kiddin9 仓库
 sed -i '$a src-git kiddin9 https://github.com/kiddin9/kwrt-packages' feeds.conf.default
+# --- 关键步骤：删除可能导致冲突的重复包 ---
+# 删除官方 feed 中已有的、但我们需要用 kiddin9 版的包
+rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,sing*,smartdns}
+rm -rf feeds/luci/applications/luci-app-mosdns
+
+
+
 
 
 #添加第三方软件源
