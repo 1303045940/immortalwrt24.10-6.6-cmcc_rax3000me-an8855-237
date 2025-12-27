@@ -22,6 +22,8 @@ git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
 #sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
 #sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 
+sed -i '$a src-git small https://github.com/1303045940/Kwrt' feeds.conf.default
+
 
 #添加第三方软件源
 #sed -i "s/option check_signature/# option check_signature/g" package/system/opkg/Makefile
