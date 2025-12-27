@@ -217,10 +217,10 @@ UPDATE_PACKAGE "luci-app-store" "shidahuilang/openwrt-package" "Immortalwrt" "pk
 UPDATE_PACKAGE "luci-app-npc" "kiddin9/kwrt-packages" "main" "pkg"
 UPDATE_PACKAGE "luci-app-frpc" "kiddin9/kwrt-packages" "main" "pkg"
 UPDATE_PACKAGE "luci-app-zerotier" "kiddin9/kwrt-packages" "main" "pkg"
-#UPDATE_PACKAGE "luci-app-ssr-plus" "kiddin9/kwrt-packages" "main" "pkg"
+UPDATE_PACKAGE "luci-app-ssr-plus" "kiddin9/kwrt-packages" "main" "pkg"
 UPDATE_PACKAGE "luci-app-openclash" "kiddin9/kwrt-packages" "main" "pkg"
 
-UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"
+#UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"
 UPDATE_PACKAGE "passwall" "xiaorouji/openwrt-passwall" "main" "pkg"
 UPDATE_PACKAGE "passwall2" "xiaorouji/openwrt-passwall2" "main" "pkg"
 
@@ -229,7 +229,7 @@ UPDATE_PACKAGE "passwall2" "xiaorouji/openwrt-passwall2" "main" "pkg"
 #UPDATE_PACKAGE "istore" "linkease/istore" "main" "pgk"
 #UPDATE_PACKAGE "quickstart" "kenzok8/small-package" "main" "pkg"
 #UPDATE_PACKAGE "istorex" "kenzok8/small-package" "main" "pkg"
-UPDATE_PACKAGE "ssr-plus" "fw876/helloworld" "master"
+#UPDATE_PACKAGE "ssr-plus" "fw876/helloworld" "master"
 
 
 #UPDATE_VERSION "软件包名" "测试版，true，可选，默认为否"
