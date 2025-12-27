@@ -255,11 +255,9 @@ else
 fi
 
 
-cd package
-
 #预置OpenClash内核和数据
 if [ -d *"openclash"* ]; then
-        echo "预置OpenClash内核和数据!"
+    echo "预置OpenClash内核和数据!"
 	CORE_VER="https://raw.githubusercontent.com/vernesong/OpenClash/core/dev/core_version"
 	CORE_TYPE=$(echo $WRT_TARGET | grep -Eiq "64|86" && echo "amd64" || echo "arm64")
 	CORE_TUN_VER=$(curl -sL $CORE_VER | sed -n "2{s/\r$//;p;q}")
