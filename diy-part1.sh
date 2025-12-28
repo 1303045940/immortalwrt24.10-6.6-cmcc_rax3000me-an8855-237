@@ -265,30 +265,31 @@ fi
 if [ -d *"openclash"* ]; then
     echo "预置OpenClash内核和数据!"
 	
-	# 预置OpenClash内核和数据
-	# 先创建 files 对应的目录，这是最高优先级的存放点
+	# --- 预置 OpenClash 内核方案 (写入 files 目录) ---
+	# 这样做无论插件怎么更新，内核永远都在
+	
 	mkdir -p files/etc/openclash/core/
 	
-	echo "开始预置 OpenClash 内核和数据到 files 目录..."
+	echo "正在下载 OpenClash 资源到 files 目录..."
 	
-	CORE_TYPE=$(echo $WRT_TARGET | grep -Eiq "64|86" && echo "amd64" || echo "arm64")
-	GEO_MMDB="https://github.com/alecthw/mmdb_china_ip_list/raw/release/lite/Country.mmdb"
-	GEO_SITE="https://github.com/Loyalsoldier/v2ray-rules-dat/raw/release/geosite.dat"
-	CORE_MATE="https://github.com/vernesong/OpenClash/raw/core/dev/meta/clash-linux-$CORE_TYPE.tar.gz"
+	# 自动判断架构
+	CORE_TYPE="arm64" # rax3000me 确定是 arm64，如果你换 x86 请改回原来的自动判断逻辑
 	
 	# 下载数据文件
-	curl -sL -o files/etc/openclash/Country.mmdb $GEO_MMDB && echo "Country.mmdb 下载成功"
-	curl -sL -o files/etc/openclash/geosite.dat $GEO_SITE && echo "GeoSite.dat 下载成功"
+	curl -sL -o files/etc/openclash/Country.mmdb https://github.com/alecthw/mmdb_china_ip_list/raw/release/lite/Country.mmdb && echo "Country.mmdb done!"
+	curl -sL -o files/etc/openclash/GeoSite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/raw/release/geosite.dat && echo "GeoSite.dat done!"
 	
-	# 下载并解压内核
-	curl -sL -o meta.tar.gz $CORE_MATE && tar -zxf meta.tar.gz
+	# 下载并解压 Meta 内核
+	curl -sL -o meta.tar.gz https://github.com/vernesong/OpenClash/raw/core/dev/meta/clash-linux-$CORE_TYPE.tar.gz
+	tar -zxf meta.tar.gz
 	mv -f clash files/etc/openclash/core/clash_meta
 	chmod +x files/etc/openclash/core/clash_meta
 	
-	# 清理临时压缩包
+	# 清理临时文件
 	rm -rf ./*.gz ./*.tar.gz
 	
-	echo "✅ OpenClash 数据已预置到 files 目录，编译后将自动进入固件 /etc/openclash/"
+	echo "✅ OpenClash 资源已预置到固件 files 目录"
+
 
 
 	cd $PKG_PATCH && echo "openclash date has been updated!"
