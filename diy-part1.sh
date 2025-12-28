@@ -67,8 +67,9 @@ sed -i '/immortalwrt_kiddin9/d' package/base-files/files/etc/opkg/distfeeds.conf
 sed -i '/immortalwrt_kiddin9/d' package/mtk/applications/luci-app-openfi/root/usr/opkg/distfeeds.conf
 # 1. 查找并删除所有插件内置的 distfeeds.conf 中关于 vsean.net 的行
 # 这样可以彻底清除 immortalwrt_kiddin9 这个源
-find ./feeds/kiddin9/ -name "distfeeds.conf" -exec sed -i '/vsean.net/d' {} +
+
 find ./package/ -name "distfeeds.conf" -exec sed -i '/vsean.net/d' {} +
+find ./package/ -name "distfeeds.conf" -exec sed -i '/immortalwrt_kiddin9/d' {} +
 
 #src/gz immortalwrt_kiddin9 https://mirrors.vsean.net/openwrt/releases/24.10-SNAPSHOT/packages/aarch64_cortex-a53/kiddin9
 
