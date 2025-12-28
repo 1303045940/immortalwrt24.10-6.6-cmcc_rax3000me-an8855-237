@@ -61,9 +61,12 @@ sed -i "s/hostname='.*'/hostname='OpenWrt'/g" $CFG_FILE
 #添加第三方软件源
 #sed -i "s/option check_signature/# option check_signature/g" package/system/opkg/Makefile
 
+# 修改 luci-app-openfi 插件内置的软件源地址
+sed -i 's|https://mirrors.vsean.net/openwrt/releases/24.10-SNAPSHOT/packages/aarch64_cortex-a53/kiddin9|https://dl.openwrt.ai/latest/packages/aarch64_cortex-a53/kiddin9|g' package/mtk/applications/luci-app-openfi/root/usr/opkg/distfeeds.conf
+
 #src/gz immortalwrt_kiddin9 https://mirrors.vsean.net/openwrt/releases/24.10-SNAPSHOT/packages/aarch64_cortex-a53/kiddin9
 
-echo src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/aarch64_cortex-a53/kiddin9 >> ./package/system/opkg/files/customfeeds.conf
+#echo src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/aarch64_cortex-a53/kiddin9 >> ./package/system/opkg/files/customfeeds.conf
 
 # 最大连接数修改为65535
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
