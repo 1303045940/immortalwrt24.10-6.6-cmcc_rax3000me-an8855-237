@@ -290,8 +290,5 @@ if [ -d *"openclash"* ]; then
 	
 	echo "✅ OpenClash 资源已预置到固件 files 目录"
 
-
-
-	cd $PKG_PATCH && echo "openclash date has been updated!"
 fi
 echo "✅ diy-part1.sh 执行完成"
