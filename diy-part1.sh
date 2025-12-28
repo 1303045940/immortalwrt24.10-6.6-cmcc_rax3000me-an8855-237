@@ -250,6 +250,7 @@ UPDATE_PACKAGE "passwall2" "xiaorouji/openwrt-passwall2" "main" "pkg"
 UPDATE_VERSION "luci-app-openclash"
 UPDATE_VERSION "npc"
 UPDATE_VERSION "luci-app-npc"
+UPDATE_VERSION "luci-app-passwall"
 
 # 解决 libxcrypt 因 -Werror=format-nonliteral 导致的编译错误
 LIBXCRYPT_MAKEFILE="feeds/packages/libs/libxcrypt/Makefile"
