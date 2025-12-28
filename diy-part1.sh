@@ -59,7 +59,7 @@ CFG_FILE="./package/base-files/files/bin/config_generate"
 #修改默认主机名
 sed -i "s/hostname='.*'/hostname='OpenWrt'/g" $CFG_FILE
 #添加第三方软件源
-sed -i "s/option check_signature/# option check_signature/g" package/system/opkg/Makefile
+#sed -i "s/option check_signature/# option check_signature/g" package/system/opkg/Makefile
 echo src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/aarch64_cortex-a53/kiddin9 >> ./package/system/opkg/files/customfeeds.conf
 
 # 最大连接数修改为65535
