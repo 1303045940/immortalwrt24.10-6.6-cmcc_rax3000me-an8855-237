@@ -62,8 +62,9 @@ sed -i "s/hostname='.*'/hostname='OpenWrt'/g" $CFG_FILE
 #sed -i "s/option check_signature/# option check_signature/g" package/system/opkg/Makefile
 
 # 修改 luci-app-openfi 插件内置的软件源地址
-sed -i 's|https://mirrors.vsean.net/openwrt/releases/24.10-SNAPSHOT/packages/aarch64_cortex-a53/kiddin9|https://dl.openwrt.ai/latest/packages/aarch64_cortex-a53/kiddin9|g' package/mtk/applications/luci-app-openfi/root/usr/opkg/distfeeds.conf
-
+#sed -i 's|https://mirrors.vsean.net/openwrt/releases/24.10-SNAPSHOT/packages/aarch64_cortex-a53/kiddin9|https://dl.openwrt.ai/latest/packages/aarch64_cortex-a53/kiddin9|g' package/mtk/applications/luci-app-openfi/root/usr/opkg/distfeeds.conf
+sed -i '/immortalwrt_kiddin9/d' package/base-files/files/etc/opkg/distfeeds.conf
+sed -i '/immortalwrt_kiddin9/d' package/mtk/applications/luci-app-openfi/root/usr/opkg/distfeeds.conf
 #src/gz immortalwrt_kiddin9 https://mirrors.vsean.net/openwrt/releases/24.10-SNAPSHOT/packages/aarch64_cortex-a53/kiddin9
 
 #echo src/gz immortalwrt_kiddin9 https://dl.openwrt.ai/latest/packages/aarch64_cortex-a53/kiddin9 >> ./package/system/opkg/files/customfeeds.conf
