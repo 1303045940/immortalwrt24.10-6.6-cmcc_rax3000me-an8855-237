@@ -24,3 +24,4 @@ find ./ -name "distfeeds.conf" | xargs sed -i '/immortalwrt_kiddin9/d'
 # 针对你提到的那个 MTK 插件路径进行精准清理
 [ -f package/mtk/applications/luci-app-openfi/root/usr/opkg/distfeeds.conf ] && \
 sed -i '/vsean.net/d' package/mtk/applications/luci-app-openfi/root/usr/opkg/distfeeds.conf
+echo src/gz immortalwrt_kiddin9 https://dl.openwrt.ai/latest/packages/aarch64_cortex-a53/kiddin9 >> ./package/system/opkg/files/customfeeds.conf
