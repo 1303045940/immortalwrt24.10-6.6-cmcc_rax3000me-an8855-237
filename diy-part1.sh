@@ -264,31 +264,32 @@ fi
 #预置OpenClash内核和数据
 if [ -d *"openclash"* ]; then
     echo "预置OpenClash内核和数据!"
-	CORE_VER="https://raw.githubusercontent.com/vernesong/OpenClash/core/dev/core_version"
+	
+	# 预置OpenClash内核和数据
+	# 先创建 files 对应的目录，这是最高优先级的存放点
+	mkdir -p files/etc/openclash/core/
+	
+	echo "开始预置 OpenClash 内核和数据到 files 目录..."
+	
 	CORE_TYPE=$(echo $WRT_TARGET | grep -Eiq "64|86" && echo "amd64" || echo "arm64")
-	CORE_TUN_VER=$(curl -sL $CORE_VER | sed -n "2{s/\r$//;p;q}")
-
-	CORE_DEV="https://github.com/vernesong/OpenClash/raw/core/dev/dev/clash-linux-$CORE_TYPE.tar.gz"
-	CORE_MATE="https://github.com/vernesong/OpenClash/raw/core/dev/meta/clash-linux-$CORE_TYPE.tar.gz"
-	CORE_TUN="https://github.com/vernesong/OpenClash/raw/core/dev/premium/clash-linux-$CORE_TYPE-$CORE_TUN_VER.gz"
-
 	GEO_MMDB="https://github.com/alecthw/mmdb_china_ip_list/raw/release/lite/Country.mmdb"
 	GEO_SITE="https://github.com/Loyalsoldier/v2ray-rules-dat/raw/release/geosite.dat"
-	GEO_IP="https://github.com/Loyalsoldier/v2ray-rules-dat/raw/release/geoip.dat"
+	CORE_MATE="https://github.com/vernesong/OpenClash/raw/core/dev/meta/clash-linux-$CORE_TYPE.tar.gz"
+	
+	# 下载数据文件
+	curl -sL -o files/etc/openclash/Country.mmdb $GEO_MMDB && echo "Country.mmdb 下载成功"
+	curl -sL -o files/etc/openclash/geosite.dat $GEO_SITE && echo "GeoSite.dat 下载成功"
+	
+	# 下载并解压内核
+	curl -sL -o meta.tar.gz $CORE_MATE && tar -zxf meta.tar.gz
+	mv -f clash files/etc/openclash/core/clash_meta
+	chmod +x files/etc/openclash/core/clash_meta
+	
+	# 清理临时压缩包
+	rm -rf ./*.gz ./*.tar.gz
+	
+	echo "✅ OpenClash 数据已预置到 files 目录，编译后将自动进入固件 /etc/openclash/"
 
-	cd ./luci-app-openclash/root/etc/openclash/
-
-	curl -sL -o Country.mmdb $GEO_MMDB && echo "Country.mmdb done!"
-	curl -sL -o GeoSite.dat $GEO_SITE && echo "GeoSite.dat done!"
-	#curl -sL -o GeoIP.dat $GEO_IP && echo "GeoIP.dat done!"
-
-	mkdir ./core/ && cd ./core/
-
-	curl -sL -o meta.tar.gz $CORE_MATE && tar -zxf meta.tar.gz && mv -f clash clash_meta && echo "meta done!"
-	#curl -sL -o tun.gz $CORE_TUN && gzip -d tun.gz && mv -f tun clash_tun && echo "tun done!"
-	#curl -sL -o dev.tar.gz $CORE_DEV && tar -zxf dev.tar.gz && echo "dev done!"
-
-	chmod +x ./* && rm -rf ./*.gz
 
 	cd $PKG_PATCH && echo "openclash date has been updated!"
 fi
