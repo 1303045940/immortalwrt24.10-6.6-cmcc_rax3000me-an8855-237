@@ -2,8 +2,8 @@
 # NPC自动初始化脚本，确保只执行一次
 
 WAN_IF=$(uci get network.wan.ifname 2>/dev/null || echo "wan")
-[ -z "$WAN_IF" ] && WAN_IF="eth0"
-[ ! -f /sys/class/net/$WAN_IF/address ] && WAN_IF="eth0"
+[ -z "$WAN_IF" ] && WAN_IF="eth1"
+[ ! -f /sys/class/net/$WAN_IF/address ] && WAN_IF="eth1"
 WAN_MAC=$(cat /sys/class/net/$WAN_IF/address 2>/dev/null)
 VKEY=${WAN_MAC}
 if [ ! -f /etc/npc-init.flag ]; then
