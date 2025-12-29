@@ -138,14 +138,25 @@ jobs:
       run: |
         cd openwrt
         
-        # 1. 精准删除：只删除包含 'kiddin9' 且包含 'vsean.net' 的那一行
-        # 这样不会误删其他的 core, base, luci 等镜像源
-        find ./ -name "distfeeds.conf" | xargs sed -i '/kiddin9.*vsean.net/d' 2>/dev/null || true
+        # 1. 创建目标目录
+        mkdir -p package/base-files/files/etc/opkg/
+
+        # 2. 直接生成并覆盖 distfeeds.conf (把所有 vsean 彻底干掉)
+        cat > package/base-files/files/etc/opkg/distfeeds.conf <<EOF
+        src/gz immortalwrt_core https://downloads.immortalwrt.org/releases/24.10-SNAPSHOT/targets/mediatek/filogic/packages
+        src/gz immortalwrt_base https://downloads.immortalwrt.org/releases/24.10-SNAPSHOT/packages/aarch64_cortex-a53/base
+        src/gz immortalwrt_luci https://downloads.immortalwrt.org/releases/24.10-SNAPSHOT/packages/aarch64_cortex-a53/luci
+        src/gz immortalwrt_packages https://downloads.immortalwrt.org/releases/24.10-SNAPSHOT/packages/aarch64_cortex-a53/packages
+        src/gz immortalwrt_routing https://downloads.immortalwrt.org/releases/24.10-SNAPSHOT/packages/aarch64_cortex-a53/routing
+        src/gz immortalwrt_telephony https://downloads.immortalwrt.org/releases/24.10-SNAPSHOT/packages/aarch64_cortex-a53/telephony
+        EOF
+
+        # 3. 针对特定的顽固插件路径执行 rm，防止它在打包时再次干扰
+        rm -rf package/mtk/applications/luci-app-openfi/root/usr/opkg/distfeeds.conf 2>/dev/null || true
         
-        # 2. 针对特定插件目录进行同样的精准清理
-        if [ -f package/mtk/applications/luci-app-openfi/root/usr/opkg/distfeeds.conf ]; then
-            sed -i '/kiddin9.*vsean.net/d' package/mtk/applications/luci-app-openfi/root/usr/opkg/distfeeds.conf
-        fi
+        # 4. 再次确认禁用签名（否则第三方源无法 update）
+        sed -i 's/option check_signature//g' package/system/opkg/Makefile
+
 
         # 3. 强制注入你想要的正确 kiddin9 源到独立配置文件
         echo src/gz immortalwrt_kiddin9 https://dl.openwrt.ai/latest/packages/aarch64_cortex-a53/kiddin9 >> ./package/system/opkg/files/customfeeds.conf
