@@ -15,13 +15,13 @@ sudo apt install libfuse-dev
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
-# 在 diy-part2.sh 中执行，此时 feeds 已经下载完毕
+# # 在 diy-part2.sh 中执行，此时 feeds 已经下载完毕
 
-# 全局扫描：删除所有配置文件中包含 vsean.net 的行，但不触碰其他官方源
-find ./ -name "distfeeds.conf" | xargs sed -i '/vsean.net/d'
-find ./ -name "distfeeds.conf" | xargs sed -i '/immortalwrt_kiddin9/d'
+# # 全局扫描：删除所有配置文件中包含 vsean.net 的行，但不触碰其他官方源
+# find ./ -name "distfeeds.conf" | xargs sed -i '/vsean.net/d'
+# find ./ -name "distfeeds.conf" | xargs sed -i '/immortalwrt_kiddin9/d'
 
-# 针对你提到的那个 MTK 插件路径进行精准清理
-[ -f package/mtk/applications/luci-app-openfi/root/usr/opkg/distfeeds.conf ] && \
-sed -i '/vsean.net/d' package/mtk/applications/luci-app-openfi/root/usr/opkg/distfeeds.conf
-echo src/gz immortalwrt_kiddin9 https://dl.openwrt.ai/latest/packages/aarch64_cortex-a53/kiddin9 >> ./package/system/opkg/files/customfeeds.conf
+# # 针对你提到的那个 MTK 插件路径进行精准清理
+# [ -f package/mtk/applications/luci-app-openfi/root/usr/opkg/distfeeds.conf ] && \
+# sed -i '/vsean.net/d' package/mtk/applications/luci-app-openfi/root/usr/opkg/distfeeds.conf
+# echo src/gz immortalwrt_kiddin9 https://dl.openwrt.ai/latest/packages/aarch64_cortex-a53/kiddin9 >> ./package/system/opkg/files/customfeeds.conf
