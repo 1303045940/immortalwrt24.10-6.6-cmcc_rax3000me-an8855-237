@@ -57,7 +57,7 @@ CFG_FILE="./package/base-files/files/bin/config_generate"
 #修改默认IP地址
 #sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $CFG_FILE
 #修改默认主机名
-sed -i "s/hostname='.*'/hostname='OpenWrt'/g" $CFG_FILE
+sed -i "s/hostname='.*'/hostname='RAX3000M'/g" $CFG_FILE
 #添加第三方软件源
 #sed -i "s/option check_signature/# option check_signature/g" package/system/opkg/Makefile
 
