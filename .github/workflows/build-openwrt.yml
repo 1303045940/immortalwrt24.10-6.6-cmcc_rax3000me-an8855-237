@@ -137,6 +137,18 @@ jobs:
       id: compile
       run: |
         cd openwrt
+        
+        # 1. 精准删除：只删除包含 'kiddin9' 且包含 'vsean.net' 的那一行
+        # 这样不会误删其他的 core, base, luci 等镜像源
+        find ./ -name "distfeeds.conf" | xargs sed -i '/kiddin9.*vsean.net/d' 2>/dev/null || true
+        
+        # 2. 针对特定插件目录进行同样的精准清理
+        if [ -f package/mtk/applications/luci-app-openfi/root/usr/opkg/distfeeds.conf ]; then
+            sed -i '/kiddin9.*vsean.net/d' package/mtk/applications/luci-app-openfi/root/usr/opkg/distfeeds.conf
+        fi
+
+        # 3. 强制注入你想要的正确 kiddin9 源到独立配置文件
+        echo src/gz immortalwrt_kiddin9 https://dl.openwrt.ai/latest/packages/aarch64_cortex-a53/kiddin9 >> ./package/system/opkg/files/customfeeds.conf
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
